@@ -5,93 +5,94 @@ import {
   ShieldCheck,
   CreditCard,
   Beaker,
-  Sparkles,
 } from 'lucide-react';
-import AtmTerminalBezel from '../components/AtmTerminalBezel';
 
 export default function WelcomeScreen({ onStartBanking, onOpenTestPanel }) {
   return (
-    <AtmTerminalBezel
-      backgroundImage="/images/atm-bank-lobby.jpg"
-      cardInserted={true}
-      screenTitle="SecureBank ATM"
-    >
-      {/* High-Contrast Glassmorphic ATM Panel */}
-      <div className="w-full max-w-xl bg-white/92 backdrop-blur-md rounded-3xl border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-6 sm:p-10 text-center flex flex-col items-center screen-fade-in relative">
-        {/* Subtle Warm Orange Glow Edge */}
-        <div className="absolute top-0 left-1/4 right-1/4 h-1 bg-gradient-to-r from-transparent via-[#E88745] to-transparent" />
+    <div className="relative w-full h-[calc(100vh-64px)] flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+      {/* Edge-to-edge High-Resolution Watermark-Free Pexels Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+        style={{
+          backgroundImage: `url('/images/bank-bg.jpg')`,
+        }}
+      >
+        {/* 25-30% Light Warm Cream Overlay - Keeps photo sharp and vibrant */}
+        <div className="absolute inset-0 bg-[#FFF8F0]/30" />
+      </div>
 
-        {/* Brand Emblem */}
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#CF6F2E] via-[#E88745] to-[#F2A066] flex items-center justify-center text-white shadow-xl shadow-[#E88745]/30 ring-4 ring-white mb-4 transform hover:scale-105 transition-transform duration-200">
-          <Landmark className="w-8 h-8" />
+      {/* Centered Clean Modern White Glassmorphic Card (Fits in 1 Viewport, No Scroll) */}
+      <div className="relative z-10 w-full max-w-lg bg-white/92 backdrop-blur-[6px] rounded-[24px] border border-white/80 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] p-6 sm:p-8 text-center flex flex-col items-center screen-fade-in my-auto">
+        {/* Bank Brand Emblem */}
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#CF6F2E] via-[#E88745] to-[#F2A066] flex items-center justify-center text-white shadow-lg shadow-[#E88745]/25 ring-4 ring-white/90 mb-3 transform hover:scale-105 transition-transform duration-200">
+          <Landmark className="w-7 h-7" />
         </div>
 
-        {/* Title & Hierarchy */}
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#292929] leading-tight">
+        {/* Crisp Typography & Hierarchy */}
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#292929] leading-tight">
           Welcome to <span className="text-[#E88745]">SecureBank</span>
         </h1>
-
-        <p className="text-base sm:text-lg text-[#555] mt-2 font-medium max-w-md">
+        <p className="text-sm sm:text-base text-gray-600 mt-1 font-medium max-w-sm">
           Your banking, made simple and secure.
         </p>
 
-        {/* Demo ATM Card Insertion Graphic */}
-        <div className="w-full max-w-md my-6 p-4 bg-gradient-to-r from-[#FFF8F0] via-white to-[#FAF5EE] rounded-2xl border border-[#E8DDD2] shadow-sm flex items-center justify-between text-left">
-          <div className="flex items-center space-x-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#FFF8F0] border border-[#E88745]/40 flex items-center justify-center text-[#E88745] shadow-sm">
-              <CreditCard className="w-6 h-6" />
+        {/* Demo ATM Debit Card Badge */}
+        <div className="w-full max-w-sm my-5 p-3.5 bg-gradient-to-r from-[#FFF8F0] via-white to-[#FAF5EE] rounded-2xl border border-[#E8DDD2] shadow-xs flex items-center justify-between text-left">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-[#FFF8F0] border border-[#E88745]/30 flex items-center justify-center text-[#E88745] shadow-xs">
+              <CreditCard className="w-5 h-5" />
             </div>
             <div>
               <p className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">
-                ATM Debit Card Ready
+                Demo Card Number
               </p>
-              <p className="font-mono text-base font-extrabold text-[#292929] tracking-wider">
+              <p className="font-mono text-sm font-extrabold text-[#292929] tracking-wider">
                 1234 •••• •••• 3456
               </p>
-              <p className="text-xs font-semibold text-[#CF6F2E]">
+              <p className="text-[11px] font-semibold text-[#CF6F2E]">
                 Holder: Sneha Sharma
               </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-full text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex items-center space-x-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full text-[11px] font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>Ready</span>
           </div>
         </div>
 
-        {/* Prominent Orange "Start Banking" Button */}
+        {/* Primary Action Button */}
         <button
           type="button"
           onClick={() => onStartBanking('1234567890123456')}
-          className="w-full max-w-md py-4 px-8 bg-gradient-to-r from-[#E88745] to-[#D9732F] hover:from-[#D9732F] hover:to-[#CF6F2E] text-white font-extrabold text-lg rounded-2xl shadow-xl shadow-[#E88745]/35 hover:shadow-2xl hover:shadow-[#E88745]/45 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center space-x-3 group"
+          className="w-full max-w-sm py-3.5 px-6 bg-gradient-to-r from-[#E88745] to-[#D9732F] hover:from-[#D9732F] hover:to-[#CF6F2E] text-white font-extrabold text-base rounded-2xl shadow-lg shadow-[#E88745]/30 hover:shadow-xl hover:shadow-[#E88745]/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center space-x-2.5 group"
         >
           <span>Start Banking</span>
           <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
         </button>
 
         {/* Security Notice */}
-        <div className="mt-6 flex items-center justify-center space-x-2 text-xs text-gray-600 font-medium">
-          <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-          <span>256-Bit Encrypted Session • Never share your PIN • Press Cancel anytime</span>
+        <div className="mt-4 flex items-center justify-center space-x-1.5 text-[11px] text-gray-600 font-medium">
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+          <span>256-Bit Encrypted Session • Never share your PIN</span>
         </div>
 
         {/* Footer info: SET Academic Suite Link & Demo Hint */}
-        <div className="mt-6 pt-4 border-t border-gray-200/80 w-full flex items-center justify-between text-xs text-gray-500">
+        <div className="mt-4 pt-3 border-t border-gray-200/80 w-full flex items-center justify-between text-xs text-gray-500">
           <span>
-            Demo PIN: <strong className="font-mono text-[#CF6F2E] font-bold text-sm">1234</strong>
+            Demo PIN: <strong className="font-mono text-[#CF6F2E] font-bold">1234</strong>
           </span>
 
           <button
             type="button"
             onClick={onOpenTestPanel}
-            className="flex items-center space-x-1.5 font-bold text-[#CF6F2E] hover:text-[#B6591E] bg-[#FFF8F0] hover:bg-[#FBECE3] border border-[#E88745]/30 px-3 py-1.5 rounded-xl transition-colors shadow-sm"
+            className="flex items-center space-x-1.5 font-bold text-[#CF6F2E] hover:text-[#B6591E] bg-[#FFF8F0] hover:bg-[#FBECE3] border border-[#E88745]/30 px-3 py-1 rounded-xl transition-colors shadow-xs"
           >
             <Beaker className="w-3.5 h-3.5 text-[#E88745]" />
-            <span>SET Test Suite (14 TC)</span>
+            <span>SET Test Suite</span>
           </button>
         </div>
       </div>
-    </AtmTerminalBezel>
+    </div>
   );
 }

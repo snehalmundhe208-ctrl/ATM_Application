@@ -55,7 +55,6 @@ export default function App() {
           }
         })
         .catch(() => {
-          // Token expired or invalid
           setSessionToken(null);
           setAccount(null);
           setCurrentScreen('WELCOME');
@@ -82,6 +81,9 @@ export default function App() {
     setAccount(null);
     setCurrentScreen('EXIT');
   };
+
+  // Is this a fullscreen hero screen?
+  const isHeroScreen = currentScreen === 'WELCOME' || currentScreen === 'PIN_AUTH' || currentScreen === 'EXIT';
 
   // Render the current screen
   const renderScreen = () => {
@@ -195,12 +197,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5EEE6] text-[#292929] flex flex-col font-sans">
-      {/* Top Header */}
+    <div className={`min-h-screen ${isHeroScreen ? 'h-screen overflow-hidden' : ''} bg-[#F5EEE6] text-[#292929] flex flex-col font-sans`}>
+      {/* Top Navbar */}
       <Header
         account={account}
         onLogout={handleLogout}
         onOpenTestPanel={() => setIsTestModalOpen(true)}
+        transparent={isHeroScreen}
       />
 
       {/* Toast Alert Notification */}
@@ -219,7 +222,7 @@ export default function App() {
       )}
 
       {/* Main View Area */}
-      <main className="flex-1 flex flex-col justify-start">
+      <main className="flex-1 flex flex-col justify-start relative">
         {renderScreen()}
       </main>
 
@@ -229,12 +232,14 @@ export default function App() {
         onClose={() => setIsTestModalOpen(false)}
       />
 
-      {/* Minimal Footer */}
-      <footer className="w-full bg-[#FAF5EE] border-t border-[#E8DDD2] py-3 px-4 text-center text-xs text-[#737373] no-print">
-        <p>
-          SecureBank ATM Simulation System • Software Engineering & Testing (SET) Project Demo • 256-Bit SSL Encrypted
-        </p>
-      </footer>
+      {/* Footer only on internal application screens to prevent welcome screen scrolling */}
+      {!isHeroScreen && (
+        <footer className="w-full bg-[#FAF5EE] border-t border-[#E8DDD2] py-3.5 px-4 text-center text-xs text-[#737373] no-print">
+          <p>
+            SecureBank ATM Simulation System • Software Engineering & Testing (SET) Project Demo • 256-Bit SSL Encrypted
+          </p>
+        </footer>
+      )}
     </div>
   );
 }

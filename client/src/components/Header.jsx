@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Landmark, Clock, LogOut, Beaker } from 'lucide-react';
 
-export default function Header({ account, onLogout, onOpenTestPanel }) {
+export default function Header({ account, onLogout, onOpenTestPanel, transparent = false }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -25,13 +25,18 @@ export default function Header({ account, onLogout, onOpenTestPanel }) {
       weekday: 'short',
       day: '2-digit',
       month: 'short',
-      year: 'numeric',
     });
   };
 
   return (
-    <header className="w-full bg-white/95 backdrop-blur-md border-b border-[#E8DDD2] px-4 md:px-8 py-3 flex items-center justify-between gap-4 sticky top-0 z-40 shadow-sm">
-      {/* Clean Brand Logo */}
+    <header
+      className={`w-full z-40 transition-colors duration-200 ${
+        transparent
+          ? 'bg-white/90 backdrop-blur-md border-b border-black/5 shadow-xs'
+          : 'bg-white/95 backdrop-blur-md border-b border-[#E8DDD2] shadow-sm'
+      } px-4 md:px-8 py-3 flex items-center justify-between gap-4`}
+    >
+      {/* Brand Logo on Left */}
       <div className="flex items-center space-x-3">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#CF6F2E] via-[#E88745] to-[#F2A066] flex items-center justify-center text-white shadow-md shadow-[#E88745]/20 ring-2 ring-[#FFF8F0]">
           <Landmark className="w-5 h-5" />
@@ -40,21 +45,21 @@ export default function Header({ account, onLogout, onOpenTestPanel }) {
           <span className="font-extrabold text-lg tracking-tight text-[#292929]">
             Secure<span className="text-[#E88745]">Bank</span>
           </span>
-          <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF8F0] text-[#CF6F2E] border border-[#F2A066]/30 px-2 py-0.5 rounded-full">
+          <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF8F0] text-[#CF6F2E] border border-[#F2A066]/40 px-2 py-0.5 rounded-full">
             ATM
           </span>
         </div>
       </div>
 
-      {/* Single Clean Clock Indicator */}
-      <div className="hidden sm:flex items-center space-x-2 bg-[#FAF5EE] border border-[#E8DDD2] px-3.5 py-1.5 rounded-full text-xs text-[#4A4A4A]">
+      {/* Single Clean Clock Indicator (Small & Centered/Right) */}
+      <div className="hidden sm:flex items-center space-x-2 bg-[#FAF5EE] border border-[#E8DDD2] px-3 py-1 rounded-full text-xs text-[#4A4A4A]">
         <Clock className="w-3.5 h-3.5 text-[#E88745]" />
         <span className="font-medium text-gray-500">{formatDate(currentTime)}</span>
         <span className="text-gray-300">•</span>
         <span className="font-mono font-bold text-[#CF6F2E]">{formatClock(currentTime)}</span>
       </div>
 
-      {/* Action Controls */}
+      {/* Action Controls on Right */}
       <div className="flex items-center space-x-2.5">
         <button
           onClick={onOpenTestPanel}
