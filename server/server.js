@@ -48,12 +48,23 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`===============================================`);
   console.log(`🏦 SecureBank ATM Server is running on port ${PORT}`);
   console.log(`📡 API Endpoints ready at http://localhost:${PORT}/api`);
   console.log(`🧪 SET Test Suite available at http://localhost:${PORT}/api/test/run-all`);
   console.log(`===============================================`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`\n⚠️  Port ${PORT} is already in use by another process or previous server instance.`);
+    console.error(`👉 Run: npx kill-port ${PORT} (or taskkill /F /IM node.exe) to clear it.`);
+    console.error(`👉 Or run on a different port: $env:PORT=5001; npm --prefix server start\n`);
+    process.exit(1);
+  } else {
+    console.error('Server startup error:', err);
+  }
 });
 
 export default app;

@@ -6,6 +6,7 @@
     "install:all": "npm --prefix server install && npm --prefix client install",
     "db:setup": "npm --prefix server run db:setup",
     "server": "npm --prefix server run dev",
-    "client": "npm --prefix client run dev"
+    "client": "npm --prefix client run dev",
+    "clean:ports": "npx --yes kill-port 5000 5173"
   }
 }
