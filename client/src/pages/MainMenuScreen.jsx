@@ -67,7 +67,7 @@ export default function MainMenuScreen({
               <span>Session Authenticated</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292929] tracking-tight">
-              Hello, <span className="text-[#E88745]">{account?.cardHolder || 'Sneha Sharma'}</span>
+              Hello, <span className="text-[#E88745]">{account?.cardHolder || 'Bill Gates'}</span>
             </h2>
             <p className="text-sm text-[#4A4A4A] mt-2 leading-relaxed font-medium">
               Select an ATM service below to proceed. All operations are protected by 256-bit banking encryption.

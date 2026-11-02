@@ -43,7 +43,7 @@ Unlike static UI prototypes, this system includes a complete Node.js/Express RES
 
 | Attribute | Details |
 |---|---|
-| **Account Holder** | **Sneha Sharma** |
+| **Account Holder** | **Bill Gates** |
 | **Account Number** | `1234567890123456` |
 | **Default ATM PIN** | `1234` *(Hashed with bcrypt in DB)* |
 | **Initial Balance** | **₹25,000.00** *(INR)* |
@@ -126,7 +126,7 @@ Accessible from the Welcome screen and top navigation header, the **SET Panel** 
 | **TC-13** | PIN change with wrong old PIN | `Old: 0000` | HTTP 401; `INCORRECT_CURRENT_PIN` | Old PIN enforced |
 | **TC-14** | Balance verification audit | `Ledger Math`| ₹20k - 1k + 3k - 2k = ₹20k | 100% Math Consistency |
 
-> 🛡️ **Sandbox Isolation:** All automated tests run against an isolated testing account (`9999888877776666`) and reset after execution. Sneha Sharma's demo balance (₹25,000) remains clean and intact.
+> 🛡️ **Sandbox Isolation:** All automated tests run against an isolated testing account (`9999888877776666`) and reset after execution. Bill Gates' demo balance (₹25,000) remains clean and intact.
 
 ---
 

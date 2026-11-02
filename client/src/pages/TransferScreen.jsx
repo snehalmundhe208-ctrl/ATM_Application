@@ -376,7 +376,7 @@ export default function TransferScreen({
         onConfirm={handleConfirmTransfer}
         onCancel={() => setIsConfirming(false)}
         details={[
-          { label: 'Sender', value: 'Sneha Sharma (1234 •••• •••• 3456)' },
+          { label: 'Sender', value: 'Bill Gates (1234 •••• •••• 3456)' },
           { label: 'Recipient Name', value: targetRecipientName },
           { label: 'Recipient Account', value: targetAccountNumber },
           { label: 'Transfer Amount', value: formatCurrency(Number(amount)) },

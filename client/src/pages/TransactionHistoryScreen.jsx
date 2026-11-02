@@ -272,7 +272,7 @@ export default function TransactionHistoryScreen({
                             recipientAccountNumber: tx.recipientAccountNumber,
                             date: tx.createdAt,
                             terminalId: tx.terminalId || 'ATM-BLR-042',
-                            cardHolder: account?.cardHolder || 'Sneha Sharma',
+                            cardHolder: account?.cardHolder || 'Bill Gates',
                             accountNumber: account?.accountNumber || '1234567890123456',
                             status: tx.status || 'SUCCESS',
                           })

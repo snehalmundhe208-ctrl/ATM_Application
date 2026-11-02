@@ -89,7 +89,7 @@ export default function TransactionReceipt({
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">CARD HOLDER:</span>
-            <span className="uppercase font-semibold">{receipt.cardHolder || 'Sneha Sharma'}</span>
+            <span className="uppercase font-semibold">{receipt.cardHolder || 'Bill Gates'}</span>
           </div>
 
           {receipt.recipientName && (

@@ -206,7 +206,7 @@ export default function SetTestingModal({ isOpen, onClose }) {
                 Click <strong>"Run Complete Test Suite"</strong> above to execute all 14 mandatory Software Engineering & Testing verification scenarios against the backend API and database.
               </p>
               <div className="text-[11px] text-[#737373] bg-white px-3 py-1.5 rounded-lg border border-[#E8DDD2]">
-                🛡️ Note: Tests use an isolated sandbox account (`9999888877776666`). Sneha Sharma's demo balance (₹25,000) is never affected.
+                🛡️ Note: Tests use an isolated sandbox account (`9999888877776666`). Bill Gates' demo balance (₹25,000) is never affected.
               </div>
             </div>
           )}

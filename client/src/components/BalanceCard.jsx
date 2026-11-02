@@ -95,7 +95,7 @@ export default function BalanceCard({ account, onRefresh }) {
           <div>
             <p className="text-[10px] uppercase font-bold text-[#737373] tracking-wider">Card Holder</p>
             <p className="font-bold text-sm tracking-wide uppercase text-[#292929]">
-              {account?.cardHolder || 'Sneha Sharma'}
+              {account?.cardHolder || 'Bill Gates'}
             </p>
           </div>
           <div className="text-right">

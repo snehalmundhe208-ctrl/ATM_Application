@@ -42,7 +42,7 @@ export default function CheckBalanceScreen({
     balanceAfter: account?.balance || 0,
     date: new Date().toISOString(),
     terminalId: 'ATM-BLR-042',
-    cardHolder: account?.cardHolder || 'Sneha Sharma',
+    cardHolder: account?.cardHolder || 'Bill Gates',
     accountNumber: account?.accountNumber || '1234567890123456',
     status: 'COMPLETED',
   };
@@ -117,7 +117,7 @@ export default function CheckBalanceScreen({
         <div className="w-full max-w-md mt-8 bg-[#FAF5EE] rounded-2xl p-5 border border-[#E8DDD2] text-xs space-y-3 text-left">
           <div className="flex justify-between py-1 border-b border-gray-200">
             <span className="text-gray-500 font-medium">Account Holder:</span>
-            <span className="font-bold text-[#292929] uppercase">{account?.cardHolder || 'Sneha Sharma'}</span>
+            <span className="font-bold text-[#292929] uppercase">{account?.cardHolder || 'Bill Gates'}</span>
           </div>
 
           <div className="flex justify-between py-1 border-b border-gray-200">

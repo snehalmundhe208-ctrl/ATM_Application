@@ -39,7 +39,7 @@ export default function WelcomeScreen({ onStartBanking, onOpenTestPanel }) {
                 1234 •••• •••• 3456
               </p>
               <p className="text-[11px] font-bold text-[#CF6F2E]">
-                Holder: Sneha Sharma
+                Holder: Bill Gates
               </p>
             </div>
           </div>

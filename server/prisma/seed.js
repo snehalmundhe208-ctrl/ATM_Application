@@ -10,11 +10,11 @@ export async function seedDatabase() {
   const pin1234Hash = await bcrypt.hash('1234', 10);
   const pin5678Hash = await bcrypt.hash('5678', 10);
 
-  // 1. Seed or update demo account: Sneha Sharma
-  const snehaAccount = await prisma.account.upsert({
+  // 1. Seed or update demo account: Bill Gates
+  const billAccount = await prisma.account.upsert({
     where: { accountNumber: '1234567890123456' },
     update: {
-      cardHolder: 'Sneha Sharma',
+      cardHolder: 'Bill Gates',
       balance: 25000.0,
       pinHash: pin1234Hash,
       failedAttempts: 0,
@@ -25,7 +25,7 @@ export async function seedDatabase() {
     },
     create: {
       accountNumber: '1234567890123456',
-      cardHolder: 'Sneha Sharma',
+      cardHolder: 'Bill Gates',
       balance: 25000.0,
       pinHash: pin1234Hash,
       failedAttempts: 0,
@@ -36,7 +36,7 @@ export async function seedDatabase() {
     },
   });
 
-  console.log(`Demo Account seeded: ${snehaAccount.cardHolder} (${snehaAccount.accountNumber}) - Balance: ₹${snehaAccount.balance}`);
+  console.log(`Demo Account seeded: ${billAccount.cardHolder} (${billAccount.accountNumber}) - Balance: ₹${billAccount.balance}`);
 
   // 2. Seed or update isolated SET Test Account
   const testAccount = await prisma.account.upsert({
@@ -111,9 +111,9 @@ export async function seedDatabase() {
   }
   console.log(`Seeded ${recipientsData.length} predefined recipients`);
 
-  // 4. Seed initial realistic transaction history for Sneha Sharma if empty
+  // 4. Seed initial realistic transaction history for Bill Gates if empty
   const existingTxns = await prisma.transaction.count({
-    where: { senderAccountId: snehaAccount.id },
+    where: { senderAccountId: billAccount.id },
   });
 
   if (existingTxns === 0) {
@@ -130,8 +130,8 @@ export async function seedDatabase() {
           balanceAfter: 20000.0,
           status: 'SUCCESS',
           description: 'Account Opening Opening Deposit',
-          senderAccountId: snehaAccount.id,
-          senderAccountNumber: snehaAccount.accountNumber,
+          senderAccountId: billAccount.id,
+          senderAccountNumber: billAccount.accountNumber,
           createdAt: d1,
         },
         {
@@ -141,8 +141,8 @@ export async function seedDatabase() {
           balanceAfter: 30000.0,
           status: 'SUCCESS',
           description: 'ATM Cash Deposit (Denominations: 500x20)',
-          senderAccountId: snehaAccount.id,
-          senderAccountNumber: snehaAccount.accountNumber,
+          senderAccountId: billAccount.id,
+          senderAccountNumber: billAccount.accountNumber,
           createdAt: d2,
         },
         {
@@ -152,15 +152,15 @@ export async function seedDatabase() {
           balanceAfter: 25000.0,
           status: 'SUCCESS',
           description: 'Fund Transfer to Rahul Verma',
-          senderAccountId: snehaAccount.id,
-          senderAccountNumber: snehaAccount.accountNumber,
+          senderAccountId: billAccount.id,
+          senderAccountNumber: billAccount.accountNumber,
           recipientAccountNumber: '9876543210987654',
           recipientName: 'Rahul Verma',
           createdAt: d3,
         },
       ],
     });
-    console.log('Seeded 3 realistic initial transactions for Sneha Sharma');
+    console.log('Seeded 3 realistic initial transactions for Bill Gates');
   }
 
   console.log('--- Database Seeding Completed Successfully ---');

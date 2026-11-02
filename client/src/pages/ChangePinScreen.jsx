@@ -139,7 +139,7 @@ export default function ChangePinScreen({ account, onBack }) {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Card Holder:</span>
-              <span className="font-bold uppercase">{account?.cardHolder || 'Sneha Sharma'}</span>
+              <span className="font-bold uppercase">{account?.cardHolder || 'Bill Gates'}</span>
             </div>
           </div>
 

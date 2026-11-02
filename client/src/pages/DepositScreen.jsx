@@ -282,7 +282,7 @@ export default function DepositScreen({
         onCancel={() => setIsConfirming(false)}
         variant="green"
         details={[
-          { label: 'Beneficiary Account', value: 'Sneha Sharma (1234 •••• •••• 3456)' },
+          { label: 'Beneficiary Account', value: 'Bill Gates (1234 •••• •••• 3456)' },
           { label: 'Deposit Amount', value: formatCurrency(currentAmount) },
           {
             label: 'Estimated New Balance',
