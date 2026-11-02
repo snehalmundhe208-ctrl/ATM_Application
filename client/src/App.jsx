@@ -1,0 +1,240 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import Header from './components/Header';
+import SetTestingModal from './components/SetTestingModal';
+
+import WelcomeScreen from './pages/WelcomeScreen';
+import PinAuthScreen from './pages/PinAuthScreen';
+import MainMenuScreen from './pages/MainMenuScreen';
+import WithdrawScreen from './pages/WithdrawScreen';
+import DepositScreen from './pages/DepositScreen';
+import TransferScreen from './pages/TransferScreen';
+import ChangePinScreen from './pages/ChangePinScreen';
+import CheckBalanceScreen from './pages/CheckBalanceScreen';
+import TransactionHistoryScreen from './pages/TransactionHistoryScreen';
+import ExitScreen from './pages/ExitScreen';
+
+import { api, getStoredToken, setSessionToken } from './services/api';
+
+export default function App() {
+  const [currentScreen, setCurrentScreen] = useState('WELCOME');
+  const [activeCardNumber, setActiveCardNumber] = useState('1234567890123456');
+  const [account, setAccount] = useState(null);
+  const [isTestModalOpen, setIsTestModalOpen] = useState(false);
+  const [notification, setNotification] = useState(null);
+
+  // Show temporary toast message
+  const showToast = (message, type = 'info') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 4000);
+  };
+
+  // Re-fetch balance from backend
+  const refreshBalance = useCallback(async () => {
+    try {
+      const res = await api.getBalance();
+      if (res.success && res.data) {
+        setAccount((prev) => ({
+          ...(prev || {}),
+          ...res.data,
+        }));
+      }
+    } catch (err) {
+      console.warn('Could not refresh balance:', err);
+    }
+  }, []);
+
+  // Try to restore session if token exists
+  useEffect(() => {
+    const token = getStoredToken();
+    if (token) {
+      api.getBalance()
+        .then((res) => {
+          if (res.success && res.data) {
+            setAccount(res.data);
+            setCurrentScreen('MAIN_MENU');
+          }
+        })
+        .catch(() => {
+          // Token expired or invalid
+          setSessionToken(null);
+          setAccount(null);
+          setCurrentScreen('WELCOME');
+        });
+    }
+  }, []);
+
+  // Handle Start Banking
+  const handleStartBanking = (cardNum) => {
+    setActiveCardNumber(cardNum || '1234567890123456');
+    setCurrentScreen('PIN_AUTH');
+  };
+
+  // Handle Login Success
+  const handleLoginSuccess = (accountData) => {
+    setAccount(accountData);
+    setCurrentScreen('MAIN_MENU');
+    showToast(`Welcome back, ${accountData.cardHolder}!`, 'success');
+  };
+
+  // Handle Logout / Eject Card
+  const handleLogout = async () => {
+    await api.logout();
+    setAccount(null);
+    setCurrentScreen('EXIT');
+  };
+
+  // Render the current screen
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'WELCOME':
+        return (
+          <WelcomeScreen
+            onStartBanking={handleStartBanking}
+            onOpenTestPanel={() => setIsTestModalOpen(true)}
+          />
+        );
+
+      case 'PIN_AUTH':
+        return (
+          <PinAuthScreen
+            cardNumber={activeCardNumber}
+            onLoginSuccess={handleLoginSuccess}
+            onCancel={() => setCurrentScreen('WELCOME')}
+            onOpenTestPanel={() => setIsTestModalOpen(true)}
+          />
+        );
+
+      case 'MAIN_MENU':
+        return (
+          <MainMenuScreen
+            account={account}
+            onSelectOperation={(opId) => {
+              if (opId === 'WITHDRAW') setCurrentScreen('WITHDRAW');
+              else if (opId === 'DEPOSIT') setCurrentScreen('DEPOSIT');
+              else if (opId === 'TRANSFER') setCurrentScreen('TRANSFER');
+              else if (opId === 'CHANGE_PIN') setCurrentScreen('CHANGE_PIN');
+              else if (opId === 'CHECK_BALANCE') setCurrentScreen('CHECK_BALANCE');
+            }}
+            onViewHistory={() => setCurrentScreen('TRANSACTION_HISTORY')}
+            onEjectCard={handleLogout}
+            onRefreshBalance={refreshBalance}
+          />
+        );
+
+      case 'WITHDRAW':
+        return (
+          <WithdrawScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+            onRefreshBalance={refreshBalance}
+            onNewTransaction={() => setCurrentScreen('MAIN_MENU')}
+          />
+        );
+
+      case 'DEPOSIT':
+        return (
+          <DepositScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+            onRefreshBalance={refreshBalance}
+            onNewTransaction={() => setCurrentScreen('MAIN_MENU')}
+          />
+        );
+
+      case 'TRANSFER':
+        return (
+          <TransferScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+            onRefreshBalance={refreshBalance}
+            onNewTransaction={() => setCurrentScreen('MAIN_MENU')}
+          />
+        );
+
+      case 'CHANGE_PIN':
+        return (
+          <ChangePinScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+          />
+        );
+
+      case 'CHECK_BALANCE':
+        return (
+          <CheckBalanceScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+            onRefreshBalance={refreshBalance}
+          />
+        );
+
+      case 'TRANSACTION_HISTORY':
+        return (
+          <TransactionHistoryScreen
+            account={account}
+            onBack={() => setCurrentScreen('MAIN_MENU')}
+            onNewTransaction={() => setCurrentScreen('MAIN_MENU')}
+          />
+        );
+
+      case 'EXIT':
+        return (
+          <ExitScreen
+            onReturnToWelcome={() => setCurrentScreen('WELCOME')}
+          />
+        );
+
+      default:
+        return (
+          <WelcomeScreen
+            onStartBanking={handleStartBanking}
+            onOpenTestPanel={() => setIsTestModalOpen(true)}
+          />
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#F5EEE6] text-[#292929] flex flex-col font-sans">
+      {/* Top Header */}
+      <Header
+        account={account}
+        onLogout={handleLogout}
+        onOpenTestPanel={() => setIsTestModalOpen(true)}
+      />
+
+      {/* Toast Alert Notification */}
+      {notification && (
+        <div className="fixed top-16 right-5 z-50 animate-in slide-in-from-top duration-200">
+          <div
+            className={`px-4 py-3 rounded-2xl shadow-lg border text-xs font-bold flex items-center space-x-2 ${
+              notification.type === 'success'
+                ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                : 'bg-white border-[#E8DDD2] text-[#292929]'
+            }`}
+          >
+            <span>{notification.message}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Main View Area */}
+      <main className="flex-1 flex flex-col justify-start">
+        {renderScreen()}
+      </main>
+
+      {/* SET Academic Testing Panel Modal */}
+      <SetTestingModal
+        isOpen={isTestModalOpen}
+        onClose={() => setIsTestModalOpen(false)}
+      />
+
+      {/* Minimal Footer */}
+      <footer className="w-full bg-[#FAF5EE] border-t border-[#E8DDD2] py-3 px-4 text-center text-xs text-[#737373] no-print">
+        <p>
+          SecureBank ATM Simulation System • Software Engineering & Testing (SET) Project Demo • 256-Bit SSL Encrypted
+        </p>
+      </footer>
+    </div>
+  );
+}

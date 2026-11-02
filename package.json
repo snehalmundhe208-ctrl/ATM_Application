@@ -1,0 +1,11 @@
+{
+  "name": "atm-simulation-system",
+  "version": "1.0.0",
+  "description": "Full Stack ATM Simulation Web Application for SET Academic Project",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "db:setup": "npm --prefix server run db:setup",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev"
+  }
+}

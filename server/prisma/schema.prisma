@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./atm.db"
+}
+
+model Account {
+  id                    Int           @id @default(autoincrement())
+  accountNumber         String        @unique
+  cardHolder            String
+  accountType           String        @default("Savings Account")
+  pinHash               String
+  balance               Float         @default(25000.0)
+  failedAttempts        Int           @default(0)
+  isLocked              Boolean       @default(false)
+  lockedUntil           DateTime?
+  status                String        @default("ACTIVE")
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  sentTransactions      Transaction[] @relation("SenderTransactions")
+  receivedTransactions  Transaction[] @relation("ReceiverTransactions")
+}
+
+model Recipient {
+  id            Int      @id @default(autoincrement())
+  name          String
+  accountNumber String   @unique
+  bankName      String
+  branch        String
+  ifscCode      String
+  accountType   String   @default("Savings")
+  createdAt     DateTime @default(now())
+}
+
+model Transaction {
+  id                    String    @id @default(uuid())
+  referenceNumber       String    @unique
+  type                  String    // WITHDRAWAL, DEPOSIT, TRANSFER, PIN_CHANGE
+  amount                Float
+  balanceAfter          Float
+  status                String    @default("SUCCESS")
+  description           String?
+  terminalId            String    @default("ATM-BLR-042")
+
+  senderAccountId       Int?
+  senderAccount         Account?  @relation("SenderTransactions", fields: [senderAccountId], references: [id])
+  senderAccountNumber   String?
+
+  recipientAccountId    Int?
+  recipientAccount      Account?  @relation("ReceiverTransactions", fields: [recipientAccountId], references: [id])
+  recipientAccountNumber String?
+  recipientName         String?
+
+  createdAt             DateTime  @default(now())
+}

@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F5EEE6] text-[#292929] font-sans antialiased;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Realistic ATM Keypad Button 3D Effect */
+.atm-key {
+  background: #ffffff;
+  border: 1px solid #e0d5c7;
+  border-bottom: 4px solid #c9bbae;
+  transition: all 0.08s ease-in-out;
+  user-select: none;
+}
+
+.atm-key:active, .atm-key.pressed {
+  transform: translateY(2px);
+  border-bottom: 1px solid #c9bbae;
+  background: #fbf5ef;
+}
+
+.atm-key-action-clear {
+  background: #FFF3CD;
+  border-color: #FFE69C;
+  border-bottom: 4px solid #DFB550;
+  color: #856404;
+}
+.atm-key-action-clear:active {
+  transform: translateY(2px);
+  border-bottom: 1px solid #DFB550;
+}
+
+.atm-key-action-backspace {
+  background: #F8F9FA;
+  border-color: #DEE2E6;
+  border-bottom: 4px solid #ADB5BD;
+  color: #495057;
+}
+.atm-key-action-backspace:active {
+  transform: translateY(2px);
+  border-bottom: 1px solid #ADB5BD;
+}
+
+.atm-key-action-enter {
+  background: #E8F5E9;
+  border-color: #C8E6C9;
+  border-bottom: 4px solid #81C784;
+  color: #2E7D32;
+}
+.atm-key-action-enter:active {
+  transform: translateY(2px);
+  border-bottom: 1px solid #81C784;
+}
+
+.atm-key-action-cancel {
+  background: #FFEBEE;
+  border-color: #FFCDD2;
+  border-bottom: 4px solid #E57373;
+  color: #C62828;
+}
+.atm-key-action-cancel:active {
+  transform: translateY(2px);
+  border-bottom: 1px solid #E57373;
+}
+
+/* Thermal Receipt jagged edge */
+.receipt-paper {
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.receipt-zigzag-bottom {
+  background: linear-gradient(135deg, transparent 75%, #ffffff 75%) 0 0,
+              linear-gradient(-135deg, transparent 75%, #ffffff 75%) 0 0;
+  background-repeat: repeat-x;
+  background-size: 14px 10px;
+  height: 10px;
+  width: 100%;
+}
+
+/* Print Stylesheet for Browser Receipt Print */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt, #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: none !important;
+    border: 1px solid #000;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Pulsing ATM slot LED light */
+@keyframes led-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.atm-led-glow {
+  animation: led-pulse 2s infinite ease-in-out;
+}
