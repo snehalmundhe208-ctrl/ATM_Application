@@ -69,7 +69,7 @@ export default function CheckBalanceScreen({
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+    <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 screen-fade-in">
       {/* Header Bar */}
       <div className="flex items-center justify-between pb-4 border-b border-[#E8DDD2]">
         <button

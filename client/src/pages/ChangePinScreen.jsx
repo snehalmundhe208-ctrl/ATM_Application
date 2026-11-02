@@ -158,7 +158,7 @@ export default function ChangePinScreen({ account, onBack }) {
   const currentVal = getActiveValue();
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 screen-fade-in">
       {/* Header Bar */}
       <div className="flex items-center justify-between pb-4 border-b border-[#E8DDD2] mb-6">
         <button

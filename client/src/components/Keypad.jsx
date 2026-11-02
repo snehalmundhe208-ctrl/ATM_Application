@@ -12,7 +12,6 @@ export default function Keypad({
 }) {
   const [activeKey, setActiveKey] = useState(null);
 
-  // Sound or tactile press simulation
   const handlePress = (key, action) => {
     if (disabled) return;
     setActiveKey(key);
@@ -24,7 +23,6 @@ export default function Keypad({
     if (!enableKeyboard || disabled) return;
 
     const handleKeyDown = (e) => {
-      // Don't intercept if an actual input with its own handling has focus unless intended
       if (e.key >= '0' && e.key <= '9') {
         e.preventDefault();
         handlePress(e.key, () => onDigit && onDigit(e.key));
@@ -49,9 +47,18 @@ export default function Keypad({
   const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   return (
-    <div className="w-full max-w-sm mx-auto p-4 bg-[#FAF5EE] rounded-2xl border border-[#E8DDD2] shadow-inner select-none">
+    <div className="w-full max-w-sm mx-auto p-4 bg-gradient-to-b from-[#2D2B28] to-[#22201D] rounded-2xl border-2 border-[#43403B] shadow-2xl select-none">
+      {/* Top Brushed Steel Header Plate */}
+      <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#3D3A36] text-[10px] font-mono tracking-widest text-[#B0A79C] uppercase">
+        <span className="flex items-center space-x-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Encrypted Keypad</span>
+        </span>
+        <span>ADA Compliant</span>
+      </div>
+
       <div className="grid grid-cols-4 gap-2.5">
-        {/* Left 3 columns: Numbers 1-9 & 0 */}
+        {/* Left 3 columns: Numbers 1-9, Clear, 0, Back */}
         <div className="col-span-3 grid grid-cols-3 gap-2.5">
           {keys.map((num) => (
             <button
@@ -59,25 +66,29 @@ export default function Keypad({
               type="button"
               disabled={disabled}
               onClick={() => handlePress(num, () => onDigit && onDigit(num))}
-              className={`atm-key h-13 sm:h-14 rounded-xl flex items-center justify-center font-mono font-bold text-xl text-[#292929] shadow-sm transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
+              className={`atm-key-metal h-14 rounded-xl flex items-center justify-center font-mono font-extrabold text-xl text-[#292929] relative transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed ${
                 activeKey === num ? 'pressed' : ''
               }`}
             >
-              {num}
+              <span>{num}</span>
+              {/* Tactile guide dot on key 5 for accessibility */}
+              {num === '5' && (
+                <span className="absolute bottom-2 w-1.5 h-1.5 rounded-full bg-[#B8ACA0]" />
+              )}
             </button>
           ))}
 
-          {/* Empty spacer / Clear */}
+          {/* Clear Button (Ceramic Yellow) */}
           <button
             type="button"
             disabled={disabled}
             onClick={() => handlePress('clear', () => onClear && onClear())}
-            className={`atm-key atm-key-action-clear h-13 sm:h-14 rounded-xl flex flex-col items-center justify-center font-bold text-xs shadow-sm transition-transform active:scale-95 disabled:opacity-50 ${
+            className={`atm-key-metal-clear h-14 rounded-xl flex flex-col items-center justify-center font-bold text-xs transition-all active:scale-[0.98] disabled:opacity-40 ${
               activeKey === 'clear' ? 'pressed' : ''
             }`}
           >
             <RotateCcw className="w-4 h-4 mb-0.5 text-amber-700" />
-            <span className="text-[10px] uppercase font-semibold">Clear</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider">Clear</span>
           </button>
 
           {/* 0 Key */}
@@ -85,60 +96,60 @@ export default function Keypad({
             type="button"
             disabled={disabled}
             onClick={() => handlePress('0', () => onDigit && onDigit('0'))}
-            className={`atm-key h-13 sm:h-14 rounded-xl flex items-center justify-center font-mono font-bold text-xl text-[#292929] shadow-sm transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
+            className={`atm-key-metal h-14 rounded-xl flex items-center justify-center font-mono font-extrabold text-xl text-[#292929] transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed ${
               activeKey === '0' ? 'pressed' : ''
             }`}
           >
             0
           </button>
 
-          {/* Backspace Key */}
+          {/* Backspace Key (Brushed Steel) */}
           <button
             type="button"
             disabled={disabled}
             onClick={() => handlePress('backspace', () => onBackspace && onBackspace())}
-            className={`atm-key atm-key-action-backspace h-13 sm:h-14 rounded-xl flex flex-col items-center justify-center font-bold text-xs shadow-sm transition-transform active:scale-95 disabled:opacity-50 ${
+            className={`atm-key-metal-backspace h-14 rounded-xl flex flex-col items-center justify-center font-bold text-xs transition-all active:scale-[0.98] disabled:opacity-40 ${
               activeKey === 'backspace' ? 'pressed' : ''
             }`}
           >
             <Delete className="w-4 h-4 mb-0.5 text-gray-700" />
-            <span className="text-[10px] uppercase font-semibold">Back</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider">Back</span>
           </button>
         </div>
 
-        {/* Right 1 column: ATM Action Control Keys (Cancel, Clear/Back, Enter) */}
+        {/* Right 1 column: ATM Action Control Keys (Cancel & Enter) */}
         <div className="col-span-1 flex flex-col gap-2.5 justify-between">
           {/* Cancel button */}
           <button
             type="button"
             disabled={disabled}
             onClick={() => handlePress('cancel', () => onCancel && onCancel())}
-            className={`atm-key atm-key-action-cancel flex-1 rounded-xl flex flex-col items-center justify-center py-2 px-1 text-xs font-bold transition-transform active:scale-95 disabled:opacity-50 ${
+            className={`atm-key-metal-cancel flex-1 rounded-xl flex flex-col items-center justify-center py-2 px-1 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-40 ${
               activeKey === 'cancel' ? 'pressed' : ''
             }`}
           >
             <XCircle className="w-5 h-5 mb-1 text-red-600" />
-            <span className="text-[11px] uppercase tracking-wide">Cancel</span>
+            <span className="text-[10px] uppercase font-extrabold tracking-wider">Cancel</span>
           </button>
 
-          {/* Enter / Proceed button */}
+          {/* Enter button */}
           <button
             type="button"
             disabled={disabled}
             onClick={() => handlePress('enter', () => onEnter && onEnter())}
-            className={`atm-key atm-key-action-enter flex-[1.6] rounded-xl flex flex-col items-center justify-center py-2 px-1 text-xs font-bold transition-transform active:scale-95 disabled:opacity-50 ${
+            className={`atm-key-metal-enter flex-[1.6] rounded-xl flex flex-col items-center justify-center py-2 px-1 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-40 ${
               activeKey === 'enter' ? 'pressed' : ''
             }`}
           >
             <CheckCircle2 className="w-6 h-6 mb-1 text-emerald-600" />
-            <span className="text-[11px] uppercase tracking-wider font-extrabold">Enter</span>
+            <span className="text-[11px] uppercase font-extrabold tracking-wider">Enter</span>
           </button>
         </div>
       </div>
 
-      <div className="mt-3 flex items-center justify-between text-[11px] text-[#737373] px-1 font-mono">
-        <span>* Tactile keypad simulation</span>
-        <span>Keyboard input enabled</span>
+      <div className="mt-3 flex items-center justify-between text-[10px] text-[#A69C90] px-1 font-mono">
+        <span>* Tactile feedback</span>
+        <span>Keyboard: 0-9, Enter, Esc</span>
       </div>
     </div>
   );

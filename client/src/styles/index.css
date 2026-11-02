@@ -7,73 +7,141 @@
     @apply bg-[#F5EEE6] text-[#292929] font-sans antialiased;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 }
 
-/* Realistic ATM Keypad Button 3D Effect */
-.atm-key {
-  background: #ffffff;
-  border: 1px solid #e0d5c7;
-  border-bottom: 4px solid #c9bbae;
-  transition: all 0.08s ease-in-out;
+/* Screen Transitions */
+.screen-fade-in {
+  animation: screenFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes screenFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Realistic ATM Keypad Button 3D Metal/Ceramic Effect */
+.atm-key-metal {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF6F0 60%, #EFE8DE 100%);
+  border: 1px solid #D5C9BB;
+  border-bottom: 4px solid #B8ACA0;
+  box-shadow: 0 2px 4px rgba(41, 41, 41, 0.08);
+  transition: all 0.06s ease-in-out;
   user-select: none;
 }
 
-.atm-key:active, .atm-key.pressed {
-  transform: translateY(2px);
-  border-bottom: 1px solid #c9bbae;
-  background: #fbf5ef;
+.atm-key-metal:hover {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F2 100%);
+  border-color: #E88745;
 }
 
-.atm-key-action-clear {
-  background: #FFF3CD;
-  border-color: #FFE69C;
-  border-bottom: 4px solid #DFB550;
-  color: #856404;
-}
-.atm-key-action-clear:active {
-  transform: translateY(2px);
-  border-bottom: 1px solid #DFB550;
+.atm-key-metal:active, .atm-key-metal.pressed {
+  transform: translateY(3px);
+  border-bottom: 1px solid #B8ACA0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+  background: #EFE8DE;
 }
 
-.atm-key-action-backspace {
-  background: #F8F9FA;
-  border-color: #DEE2E6;
-  border-bottom: 4px solid #ADB5BD;
-  color: #495057;
+.atm-key-metal-clear {
+  background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 100%);
+  border: 1px solid #FCD34D;
+  border-bottom: 4px solid #D97706;
+  color: #92400E;
 }
-.atm-key-action-backspace:active {
-  transform: translateY(2px);
-  border-bottom: 1px solid #ADB5BD;
+.atm-key-metal-clear:hover {
+  background: #FEF3C7;
 }
-
-.atm-key-action-enter {
-  background: #E8F5E9;
-  border-color: #C8E6C9;
-  border-bottom: 4px solid #81C784;
-  color: #2E7D32;
-}
-.atm-key-action-enter:active {
-  transform: translateY(2px);
-  border-bottom: 1px solid #81C784;
+.atm-key-metal-clear:active {
+  transform: translateY(3px);
+  border-bottom: 1px solid #D97706;
 }
 
-.atm-key-action-cancel {
-  background: #FFEBEE;
-  border-color: #FFCDD2;
-  border-bottom: 4px solid #E57373;
-  color: #C62828;
+.atm-key-metal-backspace {
+  background: linear-gradient(180deg, #F9FAFB 0%, #E5E7EB 100%);
+  border: 1px solid #D1D5DB;
+  border-bottom: 4px solid #9CA3AF;
+  color: #374151;
 }
-.atm-key-action-cancel:active {
-  transform: translateY(2px);
-  border-bottom: 1px solid #E57373;
+.atm-key-metal-backspace:hover {
+  background: #E5E7EB;
+}
+.atm-key-metal-backspace:active {
+  transform: translateY(3px);
+  border-bottom: 1px solid #9CA3AF;
+}
+
+.atm-key-metal-enter {
+  background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%);
+  border: 1px solid #6EE7B7;
+  border-bottom: 4px solid #059669;
+  color: #065F46;
+}
+.atm-key-metal-enter:hover {
+  background: #D1FAE5;
+}
+.atm-key-metal-enter:active {
+  transform: translateY(3px);
+  border-bottom: 1px solid #059669;
+}
+
+.atm-key-metal-cancel {
+  background: linear-gradient(180deg, #FEF2F2 0%, #FEE2E2 100%);
+  border: 1px solid #FCA5A5;
+  border-bottom: 4px solid #DC2626;
+  color: #991B1B;
+}
+.atm-key-metal-cancel:hover {
+  background: #FEE2E2;
+}
+.atm-key-metal-cancel:active {
+  transform: translateY(3px);
+  border-bottom: 1px solid #DC2626;
+}
+
+/* ATM Terminal Bezel Highlights */
+.atm-chassis {
+  background: linear-gradient(145deg, #2D2B28 0%, #1F1D1B 100%);
+  border: 2px solid #43403B;
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.atm-screen-recess {
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.35) inset,
+    0 1px 3px rgba(0, 0, 0, 0.5) inset;
+}
+
+/* Pulsing ATM slot LED light */
+@keyframes slotPulse {
+  0%, 100% {
+    opacity: 0.45;
+    box-shadow: 0 0 4px #10B981;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px #10B981, 0 0 20px #10B981;
+  }
+}
+
+.atm-led-slot {
+  animation: slotPulse 1.8s infinite ease-in-out;
 }
 
 /* Thermal Receipt jagged edge */
 .receipt-paper {
   background: #ffffff;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .receipt-zigzag-bottom {
@@ -98,23 +166,13 @@
     left: 0;
     top: 0;
     width: 100%;
-    max-width: 420px;
+    max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
     box-shadow: none !important;
-    border: 1px solid #000;
+    border: 1px solid #111;
   }
   .no-print {
     display: none !important;
   }
-}
-
-/* Pulsing ATM slot LED light */
-@keyframes led-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-.atm-led-glow {
-  animation: led-pulse 2s infinite ease-in-out;
 }
