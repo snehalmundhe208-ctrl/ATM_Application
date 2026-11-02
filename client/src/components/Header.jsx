@@ -32,8 +32,8 @@ export default function Header({ account, onLogout, onOpenTestPanel, transparent
     <header
       className={`w-full z-40 transition-colors duration-200 ${
         transparent
-          ? 'bg-white/90 backdrop-blur-md border-b border-black/5 shadow-xs'
-          : 'bg-white/95 backdrop-blur-md border-b border-[#E8DDD2] shadow-sm'
+          ? 'bg-white border-b border-black/[0.06] shadow-xs'
+          : 'bg-white border-b border-black/[0.06] shadow-sm'
       } px-4 md:px-8 py-3 flex items-center justify-between gap-4`}
     >
       {/* Brand Logo on Left */}

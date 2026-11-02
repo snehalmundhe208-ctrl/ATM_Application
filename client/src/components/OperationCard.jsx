@@ -12,7 +12,7 @@ export default function OperationCard({
     <button
       type="button"
       onClick={onClick}
-      className="group relative text-left w-full p-6 bg-white hover:bg-[#FFF8F0]/75 rounded-2xl border border-[#E8DDD2] hover:border-[#E88745]/70 shadow-soft hover:shadow-soft-lg transition-all duration-200 transform hover:-translate-y-1.5 active:translate-y-0 active:scale-[0.98] overflow-hidden flex flex-col justify-between"
+      className="group relative text-left w-full p-6 bg-white hover:bg-[#FFF8F0]/75 rounded-[24px] border border-black/[0.06] hover:border-[#E88745]/70 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-soft-lg transition-all duration-200 transform hover:-translate-y-1.5 active:translate-y-0 active:scale-[0.98] overflow-hidden flex flex-col justify-between"
     >
       {/* Top Burnt Orange Gradient Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#E88745]/40 to-transparent group-hover:via-[#E88745] transition-all duration-300" />

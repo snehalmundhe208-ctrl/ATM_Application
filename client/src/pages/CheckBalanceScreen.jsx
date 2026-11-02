@@ -92,7 +92,7 @@ export default function CheckBalanceScreen({
       </div>
 
       {/* Main Balance Card Display */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8DDD2] shadow-soft text-center flex flex-col items-center relative overflow-hidden">
+      <div className="bg-white rounded-[24px] p-6 sm:p-10 border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] text-center flex flex-col items-center relative overflow-hidden">
         {/* Subtle orange accent orb */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-[#E88745]/10 rounded-full blur-2xl pointer-events-none" />
 

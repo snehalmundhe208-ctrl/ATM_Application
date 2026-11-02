@@ -333,7 +333,7 @@ export default function TransferScreen({
 
         {/* Right Side Summary Info Box */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="bg-[#FAF5EE] rounded-3xl p-6 border border-[#E8DDD2] shadow-soft space-y-4">
+          <div className="bg-white rounded-[24px] p-6 border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] space-y-4">
             <h4 className="text-sm font-bold text-[#292929] uppercase tracking-wider">
               Transfer Summary
             </h4>

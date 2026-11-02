@@ -197,14 +197,33 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isHeroScreen ? 'h-screen overflow-hidden' : ''} bg-[#F5EEE6] text-[#292929] flex flex-col font-sans`}>
+    <div className={`min-h-screen ${isHeroScreen ? 'h-screen overflow-hidden' : ''} text-[#292929] flex flex-col font-sans relative`}>
+      {/* Fixed Fullscreen Background Image across all screens */}
+      <div
+        className="fixed inset-0 bg-cover bg-center transition-all duration-700 pointer-events-none z-0"
+        style={{
+          backgroundImage: `url('/images/bank-bg.jpg')`,
+        }}
+      >
+        {/* Dynamic Warm Cream Overlay:
+            30% light overlay for Welcome/PIN/Exit screens (photo clearly visible)
+            85% soft cream overlay for Dashboard and operation screens (subtle bank backdrop) */}
+        <div
+          className={`absolute inset-0 transition-colors duration-300 ${
+            isHeroScreen ? 'bg-[#FFF8F0]/30' : 'bg-[#F5EEE6]/85'
+          }`}
+        />
+      </div>
+
       {/* Top Navbar */}
-      <Header
-        account={account}
-        onLogout={handleLogout}
-        onOpenTestPanel={() => setIsTestModalOpen(true)}
-        transparent={isHeroScreen}
-      />
+      <div className="relative z-40">
+        <Header
+          account={account}
+          onLogout={handleLogout}
+          onOpenTestPanel={() => setIsTestModalOpen(true)}
+          transparent={isHeroScreen}
+        />
+      </div>
 
       {/* Toast Alert Notification */}
       {notification && (
@@ -222,7 +241,7 @@ export default function App() {
       )}
 
       {/* Main View Area */}
-      <main className="flex-1 flex flex-col justify-start relative">
+      <main className="flex-1 flex flex-col justify-start relative z-10">
         {renderScreen()}
       </main>
 
@@ -232,9 +251,9 @@ export default function App() {
         onClose={() => setIsTestModalOpen(false)}
       />
 
-      {/* Footer only on internal application screens to prevent welcome screen scrolling */}
+      {/* Footer only on internal application screens */}
       {!isHeroScreen && (
-        <footer className="w-full bg-[#FAF5EE] border-t border-[#E8DDD2] py-3.5 px-4 text-center text-xs text-[#737373] no-print">
+        <footer className="w-full bg-white/90 border-t border-[#E8DDD2] py-3.5 px-4 text-center text-xs text-[#737373] relative z-10 no-print">
           <p>
             SecureBank ATM Simulation System • Software Engineering & Testing (SET) Project Demo • 256-Bit SSL Encrypted
           </p>

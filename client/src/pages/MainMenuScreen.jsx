@@ -60,7 +60,7 @@ export default function MainMenuScreen({
       {/* Top Welcome & Virtual Card Row */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Left Side: Welcome Greeting Card */}
-        <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 bg-white rounded-3xl border border-[#E8DDD2] shadow-soft">
+        <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 bg-white rounded-[24px] border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
           <div>
             <div className="inline-flex items-center space-x-2 bg-[#FFF8F0] border border-[#E8DDD2] px-3.5 py-1 rounded-full text-xs font-bold text-[#CF6F2E] mb-4">
               <ShieldCheck className="w-4 h-4" />
@@ -69,7 +69,7 @@ export default function MainMenuScreen({
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292929] tracking-tight">
               Hello, <span className="text-[#E88745]">{account?.cardHolder || 'Sneha Sharma'}</span>
             </h2>
-            <p className="text-sm text-[#737373] mt-2 leading-relaxed">
+            <p className="text-sm text-[#4A4A4A] mt-2 leading-relaxed font-medium">
               Select an ATM service below to proceed. All operations are protected by 256-bit banking encryption.
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function MainMenuScreen({
             <button
               type="button"
               onClick={onViewHistory}
-              className="flex-1 flex items-center justify-center space-x-2 bg-[#FAF5EE] hover:bg-[#FBECE3] border border-[#E8DDD2] hover:border-[#E88745]/40 text-[#292929] hover:text-[#CF6F2E] font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm transition-all duration-150 active:scale-95 shadow-sm"
+              className="flex-1 flex items-center justify-center space-x-2 bg-[#FAF5EE] hover:bg-[#FBECE3] border border-[#E8DDD2] hover:border-[#E88745]/40 text-[#292929] hover:text-[#CF6F2E] font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm transition-all duration-150 active:scale-95 shadow-xs"
             >
               <History className="w-4 h-4 text-[#E88745]" />
               <span>Transaction History</span>
@@ -88,7 +88,7 @@ export default function MainMenuScreen({
             <button
               type="button"
               onClick={onEjectCard}
-              className="flex items-center justify-center space-x-1.5 bg-red-50 hover:bg-red-100 border border-red-200 text-[#D32F2F] font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm transition-all duration-150 active:scale-95 shadow-sm"
+              className="flex items-center justify-center space-x-1.5 bg-red-50 hover:bg-red-100 border border-red-200 text-[#D32F2F] font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm transition-all duration-150 active:scale-95 shadow-xs"
             >
               <LogOut className="w-4 h-4" />
               <span>Eject Card</span>
@@ -132,7 +132,7 @@ export default function MainMenuScreen({
           <button
             type="button"
             onClick={onViewHistory}
-            className="group relative text-left w-full p-6 bg-gradient-to-br from-[#FFF8F0] to-[#FAF5EE] hover:from-[#FBECE3] hover:to-[#FFF8F0] rounded-2xl border border-dashed border-[#E88745]/50 shadow-soft hover:shadow-soft-lg transition-all duration-200 transform hover:-translate-y-1.5 active:scale-[0.98] flex flex-col justify-between"
+            className="group relative text-left w-full p-6 bg-gradient-to-br from-[#FFF8F0] to-white hover:from-[#FBECE3] hover:to-[#FFF8F0] rounded-[24px] border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-soft-lg transition-all duration-200 transform hover:-translate-y-1.5 active:scale-[0.98] flex flex-col justify-between"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#E8DDD2] text-[#CF6F2E] flex items-center justify-center shadow-sm">

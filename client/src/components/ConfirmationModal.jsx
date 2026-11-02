@@ -38,8 +38,8 @@ export default function ConfirmationModal({
   const styles = getVariantStyles();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="w-full max-w-md bg-white rounded-3xl border border-[#E8DDD2] shadow-2xl p-6 sm:p-7 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 animate-in fade-in duration-150">
+      <div className="w-full max-w-md bg-white rounded-[24px] border border-black/[0.06] shadow-[0_15px_35px_rgba(0,0,0,0.15)] p-6 sm:p-7 relative overflow-hidden">
         {/* Close Icon */}
         <button
           type="button"

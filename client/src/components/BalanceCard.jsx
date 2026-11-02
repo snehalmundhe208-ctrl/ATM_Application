@@ -60,7 +60,7 @@ export default function BalanceCard({ account, onRefresh }) {
         </div>
 
         {/* Balance Display & Eye Toggle */}
-        <div className="bg-white/85 backdrop-blur-sm rounded-2xl p-4 border border-[#E8DDD2] shadow-sm flex items-center justify-between">
+        <div className="bg-white rounded-2xl p-4 border border-[#E8DDD2] shadow-sm flex items-center justify-between">
           <div>
             <div className="flex items-center space-x-2 text-xs font-medium text-[#737373] mb-1">
               <span>Available Account Balance</span>

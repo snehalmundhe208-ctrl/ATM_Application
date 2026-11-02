@@ -60,8 +60,8 @@ export default function SetTestingModal({ isOpen, onClose }) {
     : [];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="w-full max-w-5xl max-h-[92vh] bg-white rounded-3xl border border-[#E8DDD2] shadow-2xl flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 animate-in fade-in duration-200">
+      <div className="w-full max-w-5xl max-h-[92vh] bg-white rounded-[24px] border border-black/[0.06] shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden">
         {/* Modal Top Header */}
         <div className="px-6 py-5 bg-gradient-to-r from-[#FAF5EE] via-[#FFF8F0] to-[#FAF5EE] border-b border-[#E8DDD2] flex items-center justify-between">
           <div className="flex items-center space-x-3.5">

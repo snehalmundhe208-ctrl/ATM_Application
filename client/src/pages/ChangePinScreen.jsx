@@ -226,7 +226,7 @@ export default function ChangePinScreen({ account, onBack }) {
           </div>
 
           {/* Active Step Box */}
-          <div className="bg-white rounded-3xl p-6 border border-[#E8DDD2] shadow-sm text-center space-y-4">
+          <div className="bg-white rounded-[24px] p-6 border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] text-center space-y-4">
             <h3 className="text-base font-bold text-[#292929]">
               {steps[activeStep].desc}
             </h3>
@@ -294,7 +294,7 @@ export default function ChangePinScreen({ account, onBack }) {
         </div>
 
         {/* Right Side: Keypad */}
-        <div className="lg:col-span-5 bg-white p-5 rounded-3xl border border-[#E8DDD2] shadow-soft">
+        <div className="lg:col-span-5 bg-white p-6 rounded-[24px] border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
           <p className="text-center text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">
             PIN Numeric Keypad
           </p>

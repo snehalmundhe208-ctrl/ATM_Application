@@ -94,26 +94,15 @@ export default function PinAuthScreen({
   };
 
   return (
-    <div className="relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Fullscreen High-Resolution Edge-to-edge Background */}
-      <div
-        className="fixed inset-0 bg-cover bg-center transition-all duration-700 pointer-events-none"
-        style={{
-          backgroundImage: `url('/images/bank-bg.jpg')`,
-        }}
-      >
-        {/* 25-30% Warm Cream Overlay */}
-        <div className="absolute inset-0 bg-[#FFF8F0]/30" />
-      </div>
-
-      {/* Centered Clean Modern White Glassmorphic Card */}
-      <div className="relative z-10 w-full max-w-lg bg-white/92 backdrop-blur-[6px] rounded-[24px] border border-white/80 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] p-6 sm:p-8 flex flex-col items-center screen-fade-in my-auto">
+    <div className="w-full min-h-[calc(100vh-64px)] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* Solid White Card - NO Glassmorphism, 24px Radius, 1px Border, Soft Shadow */}
+      <div className="w-full max-w-lg bg-white rounded-[24px] border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-6 sm:p-8 flex flex-col items-center screen-fade-in my-auto">
         {/* Top Header Card Bar */}
-        <div className="w-full flex items-center justify-between pb-3 border-b border-gray-200/80 mb-4">
+        <div className="w-full flex items-center justify-between pb-3 border-b border-[#E8DDD2] mb-4">
           <button
             type="button"
             onClick={onCancel}
-            className="flex items-center space-x-1.5 text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors"
+            className="flex items-center space-x-1.5 text-xs font-bold text-[#4A4A4A] hover:text-[#292929] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Cancel & Return</span>
@@ -126,14 +115,14 @@ export default function PinAuthScreen({
         </div>
 
         {/* Lock Icon */}
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#CF6F2E] via-[#E88745] to-[#F2A066] flex items-center justify-center text-white shadow-md shadow-[#E88745]/25 ring-3 ring-white mb-2">
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#CF6F2E] via-[#E88745] to-[#F2A066] flex items-center justify-center text-white shadow-md shadow-[#E88745]/25 ring-3 ring-[#FFF8F0] mb-2">
           <Lock className="w-6 h-6" />
         </div>
 
         <h2 className="text-xl sm:text-2xl font-extrabold text-[#292929] tracking-tight">
           Enter Your 4-Digit PIN
         </h2>
-        <p className="text-xs text-gray-600 mt-0.5 text-center max-w-sm">
+        <p className="text-xs text-[#4A4A4A] mt-0.5 text-center max-w-sm">
           Use the on-screen keypad below or your physical keyboard.
         </p>
 
@@ -146,7 +135,7 @@ export default function PinAuthScreen({
                 key={idx}
                 className={`w-12 h-14 rounded-2xl border-2 flex items-center justify-center transition-all duration-150 ${
                   hasDigit
-                    ? 'border-[#E88745] bg-[#FFF8F0] shadow-sm scale-105 ring-2 ring-[#E88745]/30'
+                    ? 'border-[#E88745] bg-[#FFF8F0] shadow-xs scale-105 ring-2 ring-[#E88745]/30'
                     : 'border-gray-300 bg-white shadow-xs'
                 }`}
               >
@@ -202,7 +191,7 @@ export default function PinAuthScreen({
         />
 
         {/* Demo PIN helper */}
-        <div className="mt-4 flex items-center justify-between w-full max-w-sm text-xs text-gray-500 pt-2.5 border-t border-gray-200/80">
+        <div className="mt-4 flex items-center justify-between w-full max-w-sm text-xs text-[#737373] pt-2.5 border-t border-[#E8DDD2]">
           <span>
             Demo PIN: <strong className="font-mono text-[#CF6F2E] font-bold">1234</strong>
           </span>

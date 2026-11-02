@@ -196,7 +196,7 @@ export default function TransactionHistoryScreen({
       </div>
 
       {/* Transactions Table / List */}
-      <div className="bg-white rounded-3xl border border-[#E8DDD2] shadow-soft overflow-hidden">
+      <div className="bg-white rounded-[24px] border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden">
         {isLoading ? (
           <div className="p-12 text-center">
             <div className="w-8 h-8 border-3 border-[#E88745] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
